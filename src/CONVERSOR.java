@@ -1,4 +1,3 @@
-import java.io.*;
 import okhttp3.*;
 import org.json.*;
 
@@ -14,16 +13,15 @@ public class CONVERSOR {
     public static void main(String[] args) {
 
         JFrame f=new JFrame("CONVERSOR DE DIVISAS");
-
-        JToggleButton b = new JToggleButton("Botón Toggle");
-        b.setBounds(50,200,100,50);
+        JToggleButton b = new JToggleButton("Intercambiar");
+        //b.setIcon(new ImageIcon( "replace.png"));
+        b.setBounds(50,200,150,50);
 
         JTextField t1,t2;
         t1=new JTextField("0.00");
         t1.setBounds(50,100, 200,30);
         t2=new JTextField("0.00");
         t2.setBounds(50,150, 200,30);
-        t2.setEditable(false);
         t2.setBackground(Color.white);
 
         String[] monedas_extr = { "USD","EUR","JPY","GBP","KRW"};
@@ -107,14 +105,15 @@ public class CONVERSOR {
                         String responseBody = response.body().string();
                         JSONObject jsonResponse = new JSONObject(responseBody);
                         double conversionResult = jsonResponse.getDouble("result");
-                        //System.out.println(conversionResult);
-
+                        System.out.println(conversionResult);
                         t2.setText(String.valueOf(conversionResult));
 
                         //Double.toString(d)
                         //  Block of code to try
                         //convertir(String "EUR", String "USD", double 1.0);
                         //t2.setEditable(false);
+
+
 
                     }
 
@@ -125,7 +124,7 @@ public class CONVERSOR {
                     //t1.setText("0.00");
                     //  Block of code to handle errors
                     t2.setText("0.00");
-                    //System.out.println("Error");
+                    System.out.println("Error");
 
                 }
                 //String text = t1.getText();
